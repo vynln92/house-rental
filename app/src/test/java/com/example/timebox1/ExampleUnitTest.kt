@@ -1,4 +1,4 @@
-package com.example.houserental
+package com.example.timebox1
 
 import org.junit.Test
 
