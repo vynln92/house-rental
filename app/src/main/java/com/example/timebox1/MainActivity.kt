@@ -137,6 +137,7 @@ class MainActivity : AppCompatActivity() {
         layout.translationY = dpToPx((chieuDoc * 50) + 25)
         layout.translationX = dpToPx((chieuNgang * 100) + 50)
         layout.setOnClickListener {
+            // TODO: Sai không xóa được view
             Toast.makeText(this, "sdfhsda", Toast.LENGTH_LONG).show()
             relativeLine1.removeView(layout)
         }
