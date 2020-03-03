@@ -1,18 +1,91 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <RelativeLayout
+            android:id="@+id/relativeLine1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <View
+                android:id="@+id/line"
+                android:layout_width="750dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="#000000" />
+            <RelativeLayout
+                android:id="@+id/relativeTimeRange"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_toRightOf="@+id/relativeTimeRange"
+                android:layout_width="700dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/thuHai"
+                    android:text="Thứ Hai"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content" />
+
+
+                <TextView
+                    android:id="@+id/thuBa"
+                    android:layout_toRightOf="@+id/thuHai"
+                    android:text="Thứ Ba"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/thuHai" />
+
+                <TextView
+                    android:id="@+id/thuTu"
+                    android:layout_toRightOf="@+id/thuBa"
+                    android:text="Thứ Tư"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/thuNam"
+                    android:layout_toRightOf="@+id/thuTu"
+                    android:text="Thứ Năm"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/thuSau"
+                    android:layout_toRightOf="@+id/thuNam"
+                    android:text="Thứ Sáu"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/thuBay"
+                    android:layout_toRightOf="@id/thuSau"
+                    android:text="Thứ Bảy"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_toRightOf="@id/thuBay"
+                    android:id="@+id/chuNhat"
+                    android:text="Chủ Nhật"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeTimeLine"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_toEndOf="@+id/relativeTimeRange"
+                android:layout_toRightOf="@+id/relativeTimeRange">
+            </RelativeLayout>
+        </RelativeLayout>
+    </HorizontalScrollView>
+</ScrollView>
