@@ -140,6 +140,12 @@ class MainActivity : AppCompatActivity() {
             // TODO: Sai không xóa được view
             Toast.makeText(this, "sdfhsda", Toast.LENGTH_LONG).show()
             relativeLine1.removeView(layout)
+
+// TODO: Đã sửa
+            asdfa
+            asd
+            fa
+            sdf
         }
     }
 
