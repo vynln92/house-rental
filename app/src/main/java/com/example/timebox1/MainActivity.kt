@@ -33,7 +33,6 @@ class MainActivity : AppCompatActivity() {
 
     var chieuDoc = 0
     var chieuNgang = 0
-    var listLayout = ListView(this)
     var edit = Pair("", "")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -141,30 +140,28 @@ class MainActivity : AppCompatActivity() {
         layout.translationX = dpToPx((chieuNgang * 100) + 50)
         layout.setOnClickListener {
             Toast.makeText(this, "sdfhsda", Toast.LENGTH_LONG).show()
-
-            showDialogEdit()
+            showDialogEdit(layout)
         }
 
 
     }
 
-    private fun showDialogEdit() {
+    private fun showDialogEdit(viewDelete: View) {
         val dialogBuilder = AlertDialog.Builder(this)
 
         val inflater = this.layoutInflater
         val dialogView = inflater.inflate(R.layout.editdialog, null)
         dialogBuilder.setView(dialogView)
         val alertDialog = dialogBuilder.create()
-        dialogBuilder.setView(dialogView)
         val textView = dialogView.findViewById(R.id.textEdit) as TextView
 
         textView.setText("Bắt đầu: " + edit.first + " - Kết thúc: " + edit.second)
         val buttonHuy = dialogView.findViewById(R.id.buttonEditHuy) as Button
         val buttonEdit = dialogView.findViewById(R.id.buttonEdit) as Button
         buttonHuy.setOnClickListener {
-
             Toast.makeText(this, "thanhtuan", Toast.LENGTH_LONG).show()
-            relativeLine1.removeView(lineargetlayout)
+            relativeLine1.removeView(viewDelete)
+            alertDialog.dismiss()
         }
         alertDialog.show()
 
