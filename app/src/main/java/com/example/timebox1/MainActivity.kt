@@ -22,6 +22,7 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.dialog.*
 import kotlinx.android.synthetic.main.getlayout.*
+import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
@@ -32,6 +33,8 @@ class MainActivity : AppCompatActivity() {
 
     var chieuDoc = 0
     var chieuNgang = 0
+    var listLayout = ListView(this)
+    var edit = Pair("", "")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -137,12 +140,34 @@ class MainActivity : AppCompatActivity() {
         layout.translationY = dpToPx((chieuDoc * 50) + 25)
         layout.translationX = dpToPx((chieuNgang * 100) + 50)
         layout.setOnClickListener {
-            // TODO: Sai không xóa được view
             Toast.makeText(this, "sdfhsda", Toast.LENGTH_LONG).show()
-            relativeLine1.removeView(layout)
 
-// TODO chưa đc
+            showDialogEdit()
         }
+
+
+    }
+
+    private fun showDialogEdit() {
+        val dialogBuilder = AlertDialog.Builder(this)
+
+        val inflater = this.layoutInflater
+        val dialogView = inflater.inflate(R.layout.editdialog, null)
+        dialogBuilder.setView(dialogView)
+        val alertDialog = dialogBuilder.create()
+        dialogBuilder.setView(dialogView)
+        val textView = dialogView.findViewById(R.id.textEdit) as TextView
+
+        textView.setText("Bắt đầu: " + edit.first + " - Kết thúc: " + edit.second)
+        val buttonHuy = dialogView.findViewById(R.id.buttonEditHuy) as Button
+        val buttonEdit = dialogView.findViewById(R.id.buttonEdit) as Button
+        buttonHuy.setOnClickListener {
+
+            Toast.makeText(this, "thanhtuan", Toast.LENGTH_LONG).show()
+            relativeLine1.removeView(lineargetlayout)
+        }
+        alertDialog.show()
+
     }
 
     private fun showDialogCustom(abc: Pair<String, String>) {
@@ -155,7 +180,7 @@ class MainActivity : AppCompatActivity() {
         val textView = dialogView.findViewById(R.id.textDialogTime) as TextView
         textView.setText("Bắt đầu: " + abc.first + " - Kết thúc: " + abc.second)
         val alertDialog = dialogBuilder.create()
-
+        edit = abc
         val editText = dialogView.findViewById(R.id.textDialogNoiDung) as EditText
 
         val buttonLuu1 = dialogView.findViewById(R.id.buttonLuu) as Button
