@@ -20,7 +20,10 @@ import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.get
+import androidx.core.view.size
 import kotlinx.android.synthetic.main.dialog.*
+import kotlinx.android.synthetic.main.editdialog.view.*
 import kotlinx.android.synthetic.main.getlayout.*
 import kotlin.collections.ArrayList
 
@@ -31,6 +34,7 @@ class MainActivity : AppCompatActivity() {
 
     var saveEditText = ""
 
+    var arr: List<String> = listOf()
     var chieuDoc = 0
     var chieuNgang = 0
     var edit = Pair("", "")
@@ -158,13 +162,36 @@ class MainActivity : AppCompatActivity() {
         textView.setText("Bắt đầu: " + edit.first + " - Kết thúc: " + edit.second)
         val buttonHuy = dialogView.findViewById(R.id.buttonEditHuy) as Button
         val buttonEdit = dialogView.findViewById(R.id.buttonEdit) as Button
+
         buttonHuy.setOnClickListener {
             Toast.makeText(this, "thanhtuan", Toast.LENGTH_LONG).show()
             relativeLine1.removeView(viewDelete)
             alertDialog.dismiss()
         }
+        buttonEdit.setOnClickListener {
+            var textViewInBox = viewDelete.findViewById(R.id.textAdd) as TextView
+
+            var textInBox = textViewInBox.text
+
+
+            Toast.makeText(this, "${textInBox}", Toast.LENGTH_LONG).show()
+            showDialogCustom(edit)
+            setTextInEdit(textInBox.toString())
+
+        }
         alertDialog.show()
 
+    }
+
+    private fun setTextInEdit(textInBox: String) {
+        val dialogBuilder = AlertDialog.Builder(this)
+
+        val inflater = this.layoutInflater
+        val dialogView = inflater.inflate(R.layout.dialog, null)
+        dialogBuilder.setView(dialogView)
+        val editText = dialogView.findViewById(R.id.textDialogNoiDung) as EditText
+
+        editText.setText(textInBox)
     }
 
     private fun showDialogCustom(abc: Pair<String, String>) {
@@ -195,21 +222,6 @@ class MainActivity : AppCompatActivity() {
         alertDialog.show()
     }
 
-    private fun doiThanhGio(gioDauRa: Pair<Int, Int>): Pair<String, String> {
-        var bienTruoc = ""
-        var bienSau = ""
-        if (gioDauRa.first < 10) {
-            bienTruoc = ("0" + gioDauRa.first)
-        } else {
-            bienTruoc = "" + gioDauRa.first
-        }
-        if (gioDauRa.second < 10) {
-            bienSau = ("0" + gioDauRa.second)
-        } else {
-            bienSau = "" + gioDauRa.second
-        }
-        return Pair(bienTruoc, bienSau)
-    }
 
     private fun getTimeOfPositionY(positionInDp: Float): Pair<Int, Int> {
         if (positionInDp < 100) {
