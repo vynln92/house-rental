@@ -17,6 +17,7 @@ import androidx.core.app.ComponentActivity
 import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.text.TextUtils
 import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
@@ -90,7 +91,7 @@ class MainActivity : AppCompatActivity() {
                         val giobatdau = getTextFromMinute(gioDauRa.first)
                         val gioketthuc = getTextFromMinute(gioDauRa.second)
                         var abc = Pair(giobatdau, gioketthuc)
-                        showDialogCustom(abc)
+                        showDialogCustom(abc, "")
 
                     }
                 }
@@ -169,32 +170,17 @@ class MainActivity : AppCompatActivity() {
             alertDialog.dismiss()
         }
         buttonEdit.setOnClickListener {
-            var textViewInBox = viewDelete.findViewById(R.id.textAdd) as TextView
-
-            var textInBox = textViewInBox.text
-
+            val textViewInBox = viewDelete.findViewById(R.id.textAdd) as TextView
+            val textInBox = textViewInBox.text
 
             Toast.makeText(this, "${textInBox}", Toast.LENGTH_LONG).show()
-            showDialogCustom(edit)
-            setTextInEdit(textInBox.toString())
-
+            showDialogCustom(edit, textInBox.toString())
         }
         alertDialog.show()
 
     }
 
-    private fun setTextInEdit(textInBox: String) {
-        val dialogBuilder = AlertDialog.Builder(this)
-
-        val inflater = this.layoutInflater
-        val dialogView = inflater.inflate(R.layout.dialog, null)
-        dialogBuilder.setView(dialogView)
-        val editText = dialogView.findViewById(R.id.textDialogNoiDung) as EditText
-
-        editText.setText(textInBox)
-    }
-
-    private fun showDialogCustom(abc: Pair<String, String>) {
+    private fun showDialogCustom(abc: Pair<String, String>, textEdit: String) {
         val dialogBuilder = AlertDialog.Builder(this)
 // ...Irrelevant code for customizing the buttons and title
         val inflater = this.layoutInflater
@@ -206,6 +192,10 @@ class MainActivity : AppCompatActivity() {
         val alertDialog = dialogBuilder.create()
         edit = abc
         val editText = dialogView.findViewById(R.id.textDialogNoiDung) as EditText
+
+        if (!TextUtils.isEmpty(textEdit)) {
+            editText.setText(textEdit)
+        }
 
         val buttonLuu1 = dialogView.findViewById(R.id.buttonLuu) as Button
         val buttonHuy1 = dialogView.findViewById(R.id.buttonHuy) as Button
